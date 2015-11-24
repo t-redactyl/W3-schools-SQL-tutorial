@@ -409,6 +409,12 @@ City varchar(255),
 PRIMARY KEY (ID)
 )
 
+# Sequence starts with 100, not 1
+ALTER TABLE Persons AUTO_INCREMENT = 100
+
+# VIEWS (Virtual tables)
+
+# CREATE VIEW
 
 
 
