@@ -192,7 +192,81 @@ ON Orders.CustomerID = Customers.CustomerID;
 
 # INNER JOIN
 SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+INNER JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
 
+# LEFT JOIN
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+# RIGHT JOIN
+SELECT Orders.OrderID, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees
+ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;
+
+# FULL OUTER JOIN
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName
+
+# UNION/UNION ALL
+# Combine the result-set of two or more SELECT statements
+SELECT City FROM Customers
+UNION
+SELECT City FROM Suppliers
+ORDER BY City;
+
+# Use UNION ALL to get repeated values
+SELECT City FROM Customers
+UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City;
+
+SELECT City, Country FROM Customers
+WHERE Country = 'Germany'
+UNION ALL
+SELECT City, Country FROM Suppliers
+WHERE Country = 'Germany'
+ORDER BY City;
+
+# SELECT INTO
+# Copy information from one table into another
+SELECT *
+INTO CustomersBackup2013
+FROM Customers;
+
+SELECT *
+INTO CustomersBackup2013 IN 'Backup.mbd';
+
+# INSERT INTO SELECT
+# Copy information from one table into another
+INSERT INTO Customers (CustomerName, Country)
+SELECT SupplierName, Country FROM Suppliers;
+
+# CREATE DATABASE
+CREATE DATABASE my_db;
+
+# CREATE TABLE
+CREATE TABLE Persons
+(
+PersonID int,
+LastName varchar(255),
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+# Constraints
+# Used to specify rules for the data in a table
 
 
 
