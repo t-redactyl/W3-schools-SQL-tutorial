@@ -266,7 +266,156 @@ City varchar(255)
 );
 
 # Constraints
-# Used to specify rules for the data in a table
+# Used to specify rules for the data in a table. In SQL, we have the 
+# following constraints:
+
+# NOT NULL - Indicates that a column cannot store NULL value
+# UNIQUE - Ensures that each row for a column must have a unique value
+# PRIMARY KEY - A combination of a NOT NULL and UNIQUE. 
+# Ensures that a column (or combination of two or more columns) have a 
+# unique identity which helps to find a particular record in a table 
+# more easily and quickly
+# FOREIGN KEY - Ensure the referential integrity of the data in 
+# one table to match values in another table
+# CHECK - Ensures that the value in a column meets a specific condition
+# DEFAULT - Specifies a default value for a column
+
+# NOT NULL
+CREATE TABLE PersonsNotNull
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+# UNIQUE
+CREATE TABLE PersonsNotNull
+(
+P_Id int NOT NULL UNIQUE,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+ALTER TABLE Persons
+ADD UNIQUE (P_Id)
+
+ALTER TABLE Persons
+DROP CONSTRAINT uc_PersonID
+
+# PRIMARY KEY
+CREATE TABLE Persons
+(
+P_Id int NOT NULL PRIMARY KEY,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+CONSTRAINT pk_PersonID PRIMARY KEY (P_Id,LastName)
+);
+
+# FOREIGN KEY
+CREATE TABLE Orders
+(
+O_Id int NOT NULL PRIMARY KEY,
+OrderNo int NOT NULL,
+P_Id int FOREIGN KEY REFERENCES Persons(P_Id)
+);
+
+# CHECK
+CREATE TABLE Persons
+(
+P_Id int NOT NULL CHECK (P_Id > 0),
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255)
+);
+
+# DEFAULT
+CREATE TABLE Persons
+(
+P_Id int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255) DEFAULT 'Sandnes'
+);
+
+CREATE TABLE Orders
+(
+O_Id NOT NULL,
+OrderNo int NOT NULL,
+P_Id int,
+OrderDate date DEFAULT GETDATE()
+)
+
+# CREATE INDEX
+# Create indexes in tables which allow the database application to quickly
+# search tables
+CREATE INDEX PIndex
+ON Persons (LastName)
+
+CREATE INDEX PIndex
+ON Persons (LastName, FirstName)
+
+# DROP INDEX
+DROP INDEX PIndex ON Persons
+
+# DROP TABLE
+DROP TABLE Persons
+
+# DROP DATABASE
+DROP DATABASE my_db
+
+# TRUNCATE TABLE
+# Delete all of the data in the table, but keep the empty table
+TRUNCATE TABLE Persons
+
+# ALTER TABLE
+# Add a column to a table
+ALTER TABLE PersonsADD DateOfBirth date
+
+# Change data type
+ALTER TABLE Persons
+ALTER COLUMN DateOfBirth year
+
+# DROP COLUMN
+ALTER TABLE Persons
+DROP COLUMN DateOfBirth
+
+# AUTO INCREMENT
+# Allows a unique number to be generated when a new record is inserted
+# into a table
+CREATE TABLE Persons
+(
+ID int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Address varchar(255),
+City varchar(255),
+PRIMARY KEY (ID)
+)
+
+
+
+
+
+
+
+
 
 
 
