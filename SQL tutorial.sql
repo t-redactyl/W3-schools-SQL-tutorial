@@ -415,9 +415,28 @@ ALTER TABLE Persons AUTO_INCREMENT = 100
 # VIEWS (Virtual tables)
 
 # CREATE VIEW
+CREATE VIEW [Current Product List] AS
+SELECT ProductID, ProductName
+FROM Products
+WHERE Discontinued = No
 
+SELECT * FROM [Current Product List]
 
+CREATE VIEW [Products Above Average Price] AS
+SELECT ProductName, UnitPrice
+FROM Products
+WHERE UnitPrice > (SELECT AVG(UnitPrice) FROM Products)
 
+SELECT * FROM [Products Above Average Price]
+
+# CREATE OR REPLACE VIEW
+CREATE OR REPLACE VIEW [Current Product List] AS
+SELECT ProductID, ProductName, Category
+FROM Products
+WHERE Discontinued = No
+
+# DROP VIEW
+DROP VIEW [Current Product List]
 
 
 
