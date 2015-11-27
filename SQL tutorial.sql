@@ -438,6 +438,23 @@ WHERE Discontinued = No
 # DROP VIEW
 DROP VIEW [Current Product List]
 
+# Dates
+
+SELECT * FROM Orders WHERE OrderDate = '2008-11-11'
+# Datetimes are trickier and require special syntax
+
+# NULL values
+# Represent missing data
+
+SELECT LastName, FirstName FROM Persons
+WHERE Address IS NULL
+
+# NOT NULL
+SELECT LastName, FirstName, Address FROM Persons
+WHERE Address IS NOT NULL
+
+
+
 
 
 
