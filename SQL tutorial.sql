@@ -1,4 +1,5 @@
-# SQL tutorial
+# SQL tutorial:
+# http://www.w3schools.com/sql/default.asp
 
 # SELECT
 SELECT CustomerName, City FROM Customers;
@@ -452,6 +453,47 @@ WHERE Address IS NULL
 # NOT NULL
 SELECT LastName, FirstName, Address FROM Persons
 WHERE Address IS NOT NULL
+
+# ISNULL()
+SELECT ProductName, UnitPrice*(UnitsInStock+UnitsOnOrder)
+FROM Products
+# If any values are NULL, the result is NULL
+# ISNULL() (and equivalents) returns 0 rather than NULL
+
+SELECT ProductName, UnitPrice*(UnitsInStock+ISNULL(UnitsOnOrder, 0))
+FROM Products;
+
+# General Data Types
+# Columns in tables take certain datatypes
+# See tutorial (http://www.w3schools.com/sql/sql_datatypes_general.asp)
+# for specific types
+
+# SQL functions
+# Aggregate functions return a single value from values in a column
+## AVG() - Returns the average value
+## COUNT() - Returns the number of rows
+## FIRST() - Returns the first value
+## LAST() - Returns the last value
+## MAX() - Returns the largest value
+## MIN() - Returns the smallest value
+## SUM() - Returns the sum
+
+# Scalar functions return a single value based on the input value
+## UCASE() - Converts a field to upper case
+## LCASE() - Converts a field to lower case
+## MID() - Extract characters from a text field
+## LEN() - Returns the length of a text field
+## ROUND() - Rounds a numeric field to the number of decimals specified
+## NOW() - Returns the current system date and time
+## FORMAT() - Formats how a field is to be displayed
+
+# Example:
+SELECT AVG(Price) AS PriceAverage FROM Products;
+
+# Quick reference:
+# http://www.w3schools.com/sql/sql_quickref.asp
+
+
 
 
 
